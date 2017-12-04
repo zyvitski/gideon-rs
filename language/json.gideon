@@ -1,0 +1,15 @@
+Object -> "{" Members "}" ;
+
+Members -> Pair MembersList | None;
+
+MembersList -> "," Pair MembersList | None ;
+
+Pair -> {string} ":" Value ;
+
+Array -> "[" Elements "]";
+
+Elements -> Value ElementsList | None;
+
+ElementsList -> "," Value ElementsList | None ;
+
+Value -> {string} | {number} | Object | Array | "true" | "false" | "null" ;

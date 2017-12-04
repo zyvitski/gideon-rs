@@ -1,0 +1,21 @@
+Grammar -> Prod RGrammar | Path RGrammar .
+
+RGrammar -> Grammar | .
+
+Prod -> NAME Nullable ARROW Union ENDL .
+
+Union -> Body OBody .
+
+OBody -> OR Union | .
+
+Body -> Part Nullable RBody .
+
+RBody -> Body | .
+ 
+Part -> LITERAL | RBRACE NAME LBRACE | NAME | EPSILON .   
+
+Nullable -> QMARK | .
+
+Path -> use NAME PathItemList ENDL .
+
+PathItemList -> PATHSEP NAME PathItemList  | . 

@@ -1,0 +1,29 @@
+# Gideon Grammar (in Gideon)
+# Comments are stripped by the lexer and thus are not part of the grammar
+
+# Primary Grammar Recusion
+
+Grammar -> Prod Grammar? | Path Grammar? ;
+
+# Rules for Productions
+
+Prod -> {NAME} Nullable "->" Union ";" ;
+
+Union -> Body OBody ;
+
+OBody? -> "|" Union ;
+
+Body -> Part Nullable Body? ;
+ 
+Part -> {LITERAL} 
+      | "{" {NAME} "}" 
+      | {NAME} 
+      | {EPSILON};   
+
+Nullable -> "?" ? ;
+
+# Rules for use statements
+
+Path -> "use" {NAME} PathItemList ";" ;
+
+PathItemList? -> "::" {NAME} PathItemList ; 
